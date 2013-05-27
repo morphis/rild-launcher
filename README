@@ -1,0 +1,18 @@
+This is a launcher for the Android ril daemon in a glibc based environment. The daemon
+itself is launched within the android system by the init daemon which sets up sockets for
+communication and passed environment arguments to the daemon. This is now implemented as
+part of the rild-launcher program.
+
+On startup it create two sockets
+
+/dev/socket/rild
+/dev/socket/rild_debug 
+
+which are used to communicate with the ril daemon.
+
+Furhtermore it reads the properties rild.libpath and rild.libargs from the android
+environment and add the needed arguments at launch of the ril daemon.
+
+Starting the ril daemon now looks like this
+
+# rild-launcher
